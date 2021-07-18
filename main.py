@@ -16,7 +16,7 @@ results = soup.find(id="accommodation-calendar-home")
 # assert the values on the page are consistent with no availability
 
 expected_end_date = "2021-11-30"
-expected_max_date = "2021-11-99"
+expected_max_date = "2021-11-30"
 expected_arrival_dates = ""
 
 returned_end_date = results["data-end-date"]
