@@ -8,7 +8,7 @@ Simple python script to check the max available date for MIQ bookings and genera
 - `git clone` this repo and `cd` into project directory.
 - install the poetry environment:
     - to use the exact same dependency versions, install from the lockfile with `poetry install`
-    - to rebuild the dependency graph using the latest versions available for your system use `poetry build && poetry install`
+    - to rebuild the dependency graph and install the latest versions available for your system use `poetry update`
 
 ## Run the script
 
