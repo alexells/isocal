@@ -17,7 +17,7 @@ results = soup.find(id="accommodation-calendar-home")
 
 expected_end_date = "2021-11-30"
 expected_max_date = "2021-11-30"
-expected_arrival_dates = "badvalue"
+expected_arrival_dates = ""
 
 returned_end_date = results["data-end-date"]
 returned_max_date = results["data-max-date"]
