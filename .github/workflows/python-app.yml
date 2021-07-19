@@ -52,3 +52,12 @@ jobs:
         TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
         TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
         TWILIO_API_SECRET: ${{ secrets.TWILIO_API_SECRET }}
+    - name: Send Voice notification 1
+      if: always() && steps.checkAvailability.outcome == 'failure'
+      uses: fabasoad/twilio-voice-call-action@main
+      with:
+        text: 'New MIQ dates may be available'
+        from: ${{ secrets.TWILIO_FROM_NUMBER }}
+        to: ${{ secrets.TWILIO_TO_NUMBER_1 }}
+        twilio_account_sid: ${{ secrets.TWILIO_ACCOUNT_SID }}
+        twilio_auth_token: ${{ secrets.TWILIO_AUTH_TOKEN }}
