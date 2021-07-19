@@ -1,6 +1,6 @@
 # This workflow will install Python dependencies then run the script
 
-name: Run script
+name: Check available dates
 
 on:
   push:
@@ -26,6 +26,29 @@ jobs:
       run: |
         python -m pip install poetry==1.0.0
         poetry install
-    - name: Run script
+    - name: Run main.py to check availability
+      id: checkAvailability
       run: |
         poetry run python main.py
+    - name: Send SMS notification 1
+      if: always() && steps.checkAvailability.outcome == 'failure'
+      uses: twilio-labs/actions-sms@v1
+      with:
+        fromPhoneNumber: ${{ secrets.TWILIO_FROM_NUMBER }}
+        toPhoneNumber: ${{ secrets.TWILIO_TO_NUMBER_1 }}
+        message: 'New MIQ dates may be available'
+      env:
+        TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+        TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
+        TWILIO_API_SECRET: ${{ secrets.TWILIO_API_SECRET }}
+    - name: Send SMS notification 2
+      if: always() && steps.checkAvailability.outcome == 'failure'
+      uses: twilio-labs/actions-sms@v1
+      with:
+        fromPhoneNumber: ${{ secrets.TWILIO_FROM_NUMBER }}
+        toPhoneNumber: ${{ secrets.TWILIO_TO_NUMBER_2 }}
+        message: 'New MIQ dates may be available'
+      env:
+        TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+        TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
+        TWILIO_API_SECRET: ${{ secrets.TWILIO_API_SECRET }}
