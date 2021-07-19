@@ -31,7 +31,7 @@ jobs:
       run: |
         poetry run python main.py
     - name: Send SMS notification 1
-      if: steps.checkAvailability.outcome == 'failure'
+      if: always() && steps.checkAvailability.outcome == 'failure'
       uses: twilio-labs/actions-sms@v1
       with:
         fromPhoneNumber: ${{ secrets.TWILIO_FROM_NUMBER }}
