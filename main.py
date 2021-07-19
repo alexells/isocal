@@ -25,15 +25,15 @@ returned_arrival_dates = results["data-arrival-dates"]
 
 assert (
     returned_end_date == expected_end_date
-), "unexpected value for data-end-date - new dates may be available to book"
+), f"New dates may be available to book! New data-end-date detected: {returned_end_date}"
 
 assert (
     returned_max_date == expected_max_date
-), "unexpected value for data-max-date - new dates may be available to book"
+), f"New dates may be available to book! New data-max-date detected: {returned_max_date}"
 
 assert (
     returned_arrival_dates == expected_arrival_dates
-), "unexpected value for data-arrival-dates - new dates may be available to book"
+), f"New dates may be available to book! New data-arrival-dates detected: {returned_arrival_dates}"
 
 
 # if the assertions all pass, print the values received
